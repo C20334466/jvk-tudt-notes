@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Banner Report</title>
+    <style>
+        /* Base styles and media queries for the header */
+        header#tudheader {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-height: 5em;
+            padding: 0 1em;
+            box-sizing: border-box;
+        }
+
+        header#tudheader #leftlogo,
+        header#tudheader #rightlogo {
+            height: 100%;
+            max-height: 5em;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        header#tudheader #titlecontainer {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1em;
+        }
+
+        header#tudheader #title {
+            font-size: calc(1.5rem + 1vw);
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Media Query Adjustments */
+        @media only screen and (max-width: 50em) {
+            header#tudheader {
+                flex-wrap: wrap;
+                padding: 0.5em;
+            }
+
+            header#tudheader #titlecontainer {
+                order: 2;
+                width: 100%;
+            }
+
+            header#tudheader #title {
+                font-size: calc(1.2rem + 1vw);
+            }
+
+            header#tudheader #leftlogo,
+            header#tudheader #rightlogo {
+                height: 8vw;
+                max-height: none;
+            }
+        }
+
+        @media only screen and (max-width: 30em) {
+            header#tudheader #title {
+                font-size: 1rem;
+                padding: 0.5em;
+            }
+
+            header#tudheader #leftlogo,
+            header#tudheader #rightlogo {
+                height: 10vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Responsive Banner</h1>
+
+<p><strong>Introduction:</strong> The task was to make the header section of the page more responsive. This involved adjusting the logo sizes and title font size dynamically to fit various screen sizes, ensuring that the layout remains neat and readable across devices of different dimensions.</p>
+
+<h2>Description of Code Changes</h2>
+
+<p>The following modifications were made to the header section's styles. These changes were aimed at improving responsiveness, allowing the header elements to adjust based on the screen size. Below is a comparison between the original and updated code.</p>
+
+<h3>Old Code:</h3>
+<pre>
+header#tudheader { width: 100%; display: flex; max-height: 5em; }
+header#tudheader > * {  height: 100%; margin: 0; padding: 0; font-weight: bold; }
+header#tudheader > #tuddepttext > p { width: 10em; padding: 0; margin: 1em; }
+header#tudheader #titlecontainer { flex-grow: 1; }
+header#tudheader #title { font-size: 2em; padding-top: 0.5em; margin: auto 1em auto 1em; text-align: center; }
+
+@media only screen and (max-width: 50em) {
+    #content { flex-direction: column; }
+    nav { row-gap: 0; }
+    nav>ul { width: 100%; }
+    nav>ul.commands { position: relative; top: 0; }
+
+    header#tudheader { flex-wrap: wrap; }
+    header#tudheader #titlecontainer { order: 2; width: 100%; font-size: 2.5vw; }
+    header#tudheader #tuddepttext { height: 10vw; flex-grow: 1; font-size: 2.5vw; }
+    header#tudheader #rightlogo { height: 10vw; }
+    header#tudheader #leftlogo { height: 10vw; }
+}
+</pre>
+
+<h3>New Code:</h3>
+<pre>
+/* Header Base Styles */
+header#tudheader {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-height: 5em;
+    padding: 0 1em;
+    box-sizing: border-box;
+}
+
+header#tudheader #leftlogo,
+header#tudheader #rightlogo {
+    height: 100%;
+    max-height: 5em;
+    width: auto;
+    flex-shrink: 0;
+}
+
+header#tudheader #titlecontainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1em;
+}
+
+header#tudheader #title {
+    font-size: calc(1.5rem + 1vw);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Media Query Adjustments */
+@media only screen and (max-width: 50em) {
+    header#tudheader {
+        flex-wrap: wrap;
+        padding: 0.5em;
+    }
+
+    header#tudheader #titlecontainer {
+        order: 2;
+        width: 100%;
+    }
+
+    header#tudheader #title {
+        font-size: calc(1.2rem + 1vw);
+    }
+
+    header#tudheader #leftlogo,
+    header#tudheader #rightlogo {
+        height: 8vw;
+        max-height: none;
+    }
+}
+
+@media only screen and (max-width: 30em) {
+    header#tudheader #title {
+        font-size: 1rem;
+        padding: 0.5em;
+    }
+
+    header#tudheader #leftlogo,
+    header#tudheader #rightlogo {
+        height: 10vw;
+    }
+}
+</pre>
+
+<h2>How the Solution Was Reached</h2>
+
+<p>The solution was reached by reviewing the initial layout, identifying areas where the header could improve in terms of responsiveness, and then applying changes in the CSS. This included refining the `flex` layout to ensure the elements align properly, and introducing dynamic font size adjustments using `calc()` based on the viewport width to make the title scale correctly across various devices.</p>
+
+<p>Additionally, the header was adjusted for small screens using media queries, making sure the logo and title container adjust their size proportionally. I consulted with ChatGPT to ensure the approach was optimal, especially for mobile responsiveness, which helped in refining the final solution.</p>
+
+<h2>What Was Easy and What Was Hard</h2>
+
+<p>The easy part was adjusting the header’s `flexbox` properties, as they are well-documented and provide an easy way to align elements. The challenge was ensuring that the font sizes and logo sizes adjust smoothly without losing readability or breaking the layout, especially on smaller screens. The use of `calc()` in font size was particularly helpful in dynamically adjusting based on the screen width.</p>
+
+
+<h1>Keyboard Accessibility</h1>
+
+<p><strong>Introduction:</strong> Keyboard accessibility ensures that users can navigate and interact with the webpage using only a keyboard. This is especially important for users who rely on assistive technologies or prefer not to use a mouse. The following updates were made to the page to improve keyboard accessibility for interactive elements like links, buttons, and headers.</p>
+
+<h2>Description of Code Changes</h2>
+
+<p>The focus was on adding appropriate `tabindex` values and keyboard event handlers for actionable elements. Below is a comparison of the original and updated code:</p>
+<h3>Old Code:</h3>
+<pre>
+    &lt;p&gt;Synchronous programming&lt;/p&gt;
+    &lt;p&gt;Asynchronous programming with callbacks&lt;/p&gt;
+    &lt;p&gt;Asynchronous programming with promises&lt;/p&gt;
+    &lt;p&gt;Multithreading&lt;/p&gt;
+</pre>
+
+<h3>New Code:</h3>
+<pre>
+    &lt;p tabindex="0"&gt;Synchronous programming&lt;/p&gt;
+    &lt;p tabindex="0"&gt;Asynchronous programming with callbacks&lt;/p&gt;
+    &lt;p tabindex="0"&gt;Asynchronous programming with promises&lt;/p&gt;
+    &lt;p tabindex="0"&gt;Multithreading&lt;/p&gt;
+
+    &lt;script&gt;type="text/javascript" src="../common/res/scripts/main.js"&lt;/script&gt;
+
+    // Function to toggle the visibility of the article
+	function toggle_article(article) {
+		if (article) {
+			if (article.style.display === 'none') {
+				article.style.display = 'block'; // Open article
+			} else {
+				article.style.display = 'none'; // Close article
+			}
+		}
+	}
+
+	// Function to handle keyboard events (Enter, Escape)
+	function handle_keyboard_navigation(e) {
+		const header = e.target;
+		const article = header.nextElementSibling; // Get the next sibling (article)
+
+		// Handle the Enter key - open/close the corresponding article
+		if (e.key === "Enter") {
+			toggle_article(article);
+		}
+
+		// Handle the Escape key - close the article if it's open
+		if (e.key === "Escape") {
+			if (article && article.style.display !== 'none') {
+				toggle_article(article);
+			}
+		}
+	}
+
+	// Initialize event listeners for keyboard navigation
+	function init_keyboard_navigation() {
+		const headers = document.querySelectorAll('p[tabindex="0"]');
+		headers.forEach(header => {
+			header.addEventListener('keydown', handle_keyboard_navigation);
+		});
+	}
+
+	window.addEventListener("load", () => {
+		init_keyboard_navigation(); // Initialize keyboard navigation after the page loads
+	});
+</pre>
+
+<h2>How the Solution Was Reached</h2>
+
+<p>The first step was to identify interactive elements in the header that required keyboard accessibility. Elements like the title and navigation links were given a `tabindex="0"` attribute, enabling them to be focused using the Tab key. I consulted with ChatGPT to refine this approach and ensure comprehensive coverage of accessibility best practices.</p>
+
+<p>Event listeners were implemented for `keydown` events to handle actions triggered by pressing the Enter key. This allows users to interact with elements in a meaningful way. The implementation of these event listeners was guided by suggestions from ChatGPT, which helped optimize the handling of keyboard interactions.</p>
+
+<h2>What Was Easy and What Was Hard</h2>
+
+<p>The easy part was adding `tabindex` and ARIA roles, as these changes are straightforward and well-documented. The challenge was handling keyboard events consistently across browsers and ensuring that no unintended side effects were introduced (e.g., duplicate actions). Testing with screen readers and browser tools was essential to validate the implementation.</p>
+
+
+
+<h1>Links to Element IDs</h1>
+
+<p><strong>Introduction:</strong> Enhancements were made to ensure that links pointing to specific element IDs function correctly, even when the target section is collapsed. This ensures seamless navigation for users.</p>
+
+<h2>Description of Code Changes</h2>
+
+<p>Code changes focused on ensuring that anchor links expand collapsed sections and smoothly scroll to the target. Below is a comparison of the original and updated implementations:</p>
+
+<h3>Old Code:</h3>
+<pre>
+&lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
+&lt;article id="section1"&gt;
+    &lt;p&gt;Content of Section 1&lt;/p&gt;
+&lt;/article&gt;
+</pre>
+
+<h3>New Code:</h3>
+<pre>
+&lt;a href="#section1"&gt;Go to Section 1&lt;/a&gt;
+&lt;article id="section1" style="display: none;"&gt;
+    &lt;p&gt;Content of Section 1&lt;/p&gt;
+&lt;/article&gt;
+
+&lt;script&gt;
+function toggle_article(article, forceOpen = false) {
+    if (article) {
+        article.style.display = forceOpen ? 'block' : (article.style.display === 'none' ? 'block' : 'none');
+    }
+}
+
+function handle_anchor_navigation() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (event) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                const article = targetElement.closest('article');
+                if (article && article.style.display === 'none') {
+                    toggle_article(article, true);
+                }
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+window.addEventListener("load", handle_anchor_navigation);
+&lt;/script&gt;
+</pre>
+
+<h2>How the Solution Was Reached</h2>
+
+<p>The first step was identifying that navigating to a link pointing to a collapsed section failed to display the target content. By introducing JavaScript logic to check the visibility of the target section and force it to open, the problem was resolved.</p>
+
+<p>To improve user experience, smooth scrolling was added to the navigation process. Suggestions from ChatGPT were instrumental in refining this logic, ensuring compatibility across various browsers and use cases.</p>
+
+<h2>What Was Easy and What Was Hard</h2>
+
+<p>Adding event listeners for anchor links was straightforward. The challenge was implementing logic to handle collapsed sections without introducing unwanted side effects. Additionally, ensuring smooth navigation required careful handling of scrolling behavior, especially for deeply nested elements.</p>
+
+
+
+
+
+
+</body>
+</html>

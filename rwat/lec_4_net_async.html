@@ -37,71 +37,90 @@
 
 
 	            <!--------------------------------------------------------------------->
-                    <li id="ARTCLID000081">
-			<p>Synchronous programming</p>
-			<article style="display:none">
-                            <h2>Synchronous programming</h2>
-
-			    <figure class="five">
-				<figcaption>Fully synchronous program execution</figcaption>
-				<img  class="p1 bg-white" src="res/images/async1.png">
-			    </figure>
-			    <ul>
-				<li>In the picture above, the function in context 1 calls function in context 2, which in turn calls function in context 3.</li>
-				<li>The function in context 3 makes a network call (but this could be anything that takes time outside of the Javascript thread of execution).</li>
-				<li>A <strong>synchronous</strong> call involves waiting  for the called function to return (like what the function in context 3 does).</li>
-				<li>Synchronous programming would not be a problem if all functions called did not take long to return.</li>
-				<li>However, if the thread of execution is blocked, this can have a serious impact on user experience, since nothing can happen on the page during the wait: parts of the page may not be rendered and user input is not handled.</li>
-			    </ul>
-			</article>
-		    </li>
+			<li id="ARTCLID000081">
+				<p tabindex="0">Synchronous programming</p>
+				<article style="display:none">
+					<h2>Synchronous programming</h2>
+					<figure class="five">
+						<figcaption>Fully synchronous program execution</figcaption>
+						<img  class="p1 bg-white" src="res/images/async1.png">
+					</figure>
+					<ul>
+					<li>In the picture above, the function in context 1 calls function in context 2, which in turn calls function in context 3.</li>
+					<li>The function in context 3 makes a network call (but this could be anything that takes time outside of the Javascript thread of execution).</li>
+					<li>A <strong>synchronous</strong> call involves waiting  for the called function to return (like what the function in context 3 does).</li>
+					<li>Synchronous programming would not be a problem if all functions called did not take long to return.</li>
+					<li>However, if the thread of execution is blocked, this can have a serious impact on user experience, since nothing can happen on the page during the wait: parts of the page may not be rendered and user input is not handled.</li>
+					</ul>
+				</article>
+			</li>
 
 
 	            <!--------------------------------------------------------------------->
-                    <li id="ARTCLID000082">
-			<p>Asynchronous programming with callbacks</p>
-			<article style="display:none">
-                            <h2>Asynchronous programming with callbacks</h2>
-			    <figure class="five">
-				<figcaption id="fig-callback">Execution of a program with an asynchronous call and the use of a callback</figcaption>
-				<img class="p1 bg-white" src="res/images/async2.png">
-			    </figure>
-			    <ul>
-				<li>In the picture above, the call to the network is asynchronous and returns immediately.</li>
-				<li>The asynchronous call takes a callback function as an argument.</li>
-				<li>When the work requested by the network call is completed and an asynchronous response comes in (black left-directed arrow), the callback code is queued for execution and executes once the thread of execution is free.</li>
-				<li>This pattern allows the thread of execution to be utilised while long-lasting external work is taking place.</li>
-				<li>There are cases where 'internal' work needs to be treated in the same way. For example, code that is computationally expensive can be sent to the back of the queue if it does not involve immediate interaction with the user (also see <a href="#ARTCLID000084">multithreading</a>).</li>
-				<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">This article</a> on MDN gives details on how to program using callbacks.
-			    </ul>
-			</article>
-				</li>
-
+                <li id="ARTCLID000082">
+					<p tabindex="0">Asynchronous programming with callbacks</p>
+					<article style="display:none">
+						<h2>Asynchronous programming with callbacks</h2>
+						<figure class="five">
+							<figcaption id="fig-callback">Execution of a program with an asynchronous call and the use of a callback</figcaption>
+							<img class="p1 bg-white" src="res/images/async2.png">
+						</figure>
+						<ul>
+						<li>In the picture above, the call to the network is asynchronous and returns immediately.</li>
+						<li>The asynchronous call takes a callback function as an argument.</li>
+						<li>When the work requested by the network call is completed and an asynchronous response comes in (black left-directed arrow), the callback code is queued for execution and executes once the thread of execution is free.</li>
+						<li>This pattern allows the thread of execution to be utilised while long-lasting external work is taking place.</li>
+						<li>There are cases where 'internal' work needs to be treated in the same way. For example, code that is computationally expensive can be sent to the back of the queue if it does not involve immediate interaction with the user (also see <a href="#ARTCLID000084">multithreading</a>).</li>
+						<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">This article</a> on MDN gives details on how to program using callbacks.
+						</ul>
+					</article>
+				</li>    
 
 				<!--------------------------------------------------------------------->
 				<li id="ARTCLID000083">
-				    <p>Asynchronous programming with promises</p>
-				    <article style="display:none">
-					<h2>Asynchronous programming with promises</h2>
-					<figure class="five">
-					    <figcaption>Execution of a program with an asynchronous call and the use of a promise</figcaption>
-					    <img class="p1 bg-white" src="res/images/async3.png">
-					</figure>
-					<ul>
-					    <li>The picture above shows a case of using an asynchronous call that returns a promise.</li>
-					    <li>An object called a <strong>promise</strong> is returned from the asynchronous call.</li>
-					    <li>The callback in this case is still used but rather than <a href="#fig-callback">passed into the asynchronous call</a>, it is attached to the promise (with the <span class="fw">then</span> method).</li>
-					    <li>The <span class="fw">await</span> operator allows parts of the program to be syncrhonised with the completion of the asynchronous call.</li>
-					    <li>Both <span class="fw">then</span> and <span class="fw">await</span> can be used by any code that has a reference to the promise. This need not be the code that makes the asynchronous call.</li>
-					    <li>Also, asynchronous calls can easily be chained using the <span class="fw">then</span> method (not shown in the picture).</li>
-					    <li>These features of the promise mechanism offer more flexibility and ease of use to the programmer than conventional callbacks, especially in cases where many asynchronous operations depend on each other.</li>
-				<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises">This article</a> on MDN gives details on how to program with promises.
-			    </ul>
-			</article>
-                    </li>
-
+					<p tabindex="0">Asynchronous programming with promises</p>
+					<article style="display:none">
+						<h2>Asynchronous programming with promises</h2>
+						<figure class="five">
+							<figcaption>Execution of a program with an asynchronous call and the use of a promise</figcaption>
+							<img class="p1 bg-white" src="res/images/async3.png">
+						</figure>
+						<ul>
+							<li>The picture above shows a case of using an asynchronous call that returns a promise.</li>
+							<li>An object called a <strong>promise</strong> is returned from the asynchronous call.</li>
+							<li>The callback in this case is still used but rather than <a href="#fig-callback">passed into the asynchronous call</a>, it is attached to the promise (with the <span class="fw">then</span> method).</li>
+							<li>The <span class="fw">await</span> operator allows parts of the program to be syncrhonised with the completion of the asynchronous call.</li>
+							<li>Both <span class="fw">then</span> and <span class="fw">await</span> can be used by any code that has a reference to the promise. This need not be the code that makes the asynchronous call.</li>
+							<li>Also, asynchronous calls can easily be chained using the <span class="fw">then</span> method (not shown in the picture).</li>
+							<li>These features of the promise mechanism offer more flexibility and ease of use to the programmer than conventional callbacks, especially in cases where many asynchronous operations depend on each other.</li>
+					<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises">This article</a> on MDN gives details on how to program with promises.
+					</ul>
+					</article>
+				</li>
 
 	            <!--------------------------------------------------------------------->
+				<li id="ARTCLID000084">
+					<p tabindex="0">Multithreading</p>
+					<article style="display:none">
+						<h2>Multithreading</h2>
+						<ul>
+							<li>Multithreading is implemented by the Javascript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Workers API</a>.</li>
+							<li>We will not be using this API in the module, but it is good to be aware of its existence.</li>
+						</ul>
+					</article>
+				</li>
+			</ol>
+
+			<h2>Links</h2>
+			<ul>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">Introducing asynchronous JavaScript @MDN</a></li>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">How to Use Promises @MDN</a></li>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Implementing_a_promise-based_API">How to implement a promise-based API @MDN</a></li>
+			</ul>
+		</article>
+
+
+
                     <li id="ARTCLID000084">
 			<p>Multithreading</p>
 			<article style="display:none">
@@ -116,14 +135,75 @@
 
 		</ol>
 
-		<h2>Links</h2>
-		<ul>
-		    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">Introducing asynchronous JavaScript @MDN</a></li>
-		    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">How to Use Promises @MDN</a></li>
-		    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Implementing_a_promise-based_API">How to implement a promise-based API @MDN</a></li>
-		</ul>
-	    </article>
+	
 	</div>
 	<script type="text/javascript" src="../common/res/scripts/main.js"></script>
+	
+	<script type="text/javascript">
+		// Function to toggle the visibility of the article
+		function toggle_article(article, forceOpen = false) {
+			if (article) {
+				if (forceOpen) {
+					article.style.display = 'block'; // Ensure the article is open
+				} else {
+					article.style.display = article.style.display === 'none' ? 'block' : 'none'; // Toggle
+				}
+			}
+		}
+	
+		// Function to handle anchor navigation and ensure the target section is visible
+		function handle_anchor_navigation() {
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (event) {
+					const targetId = this.getAttribute('href').substring(1); // Get the ID from href
+					const targetElement = document.getElementById(targetId);
+	
+					if (targetElement) {
+						// Check if the target element is within a collapsed section
+						const article = targetElement.closest('article');
+						if (article && article.style.display === 'none') {
+							toggle_article(article, true); // Open the section containing the target
+						}
+	
+						// Scroll to the target element
+						targetElement.scrollIntoView({ behavior: 'smooth' });
+					}
+				});
+			});
+		}
+	
+		// Function to handle keyboard events (Enter, Escape)
+		function handle_keyboard_navigation(e) {
+			const header = e.target;
+			const article = header.nextElementSibling; // Get the next sibling (article)
+	
+			// Handle the Enter key - open/close the corresponding article
+			if (e.key === "Enter") {
+				toggle_article(article);
+			}
+	
+			// Handle the Escape key - close the article if it's open
+			if (e.key === "Escape") {
+				if (article && article.style.display !== 'none') {
+					toggle_article(article);
+				}
+			}
+		}
+	
+		// Initialize event listeners for keyboard navigation
+		function init_keyboard_navigation() {
+			const headers = document.querySelectorAll('p[tabindex="0"]');
+			headers.forEach(header => {
+				header.addEventListener('keydown', handle_keyboard_navigation);
+			});
+		}
+	
+		// Initialize the script
+		window.addEventListener("load", () => {
+			init_keyboard_navigation(); // Initialize keyboard navigation after the page loads
+			handle_anchor_navigation(); // Handle anchor link navigation
+		});
+	</script>
+	
     </body>
 </html>

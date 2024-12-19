@@ -160,5 +160,64 @@ function init_articles() {
 	});
     }
 }
+// Function to handle keyboard events (Tab, Enter, Escape)
+const KEYBOARD_NAVIGATION_DATA = {
+	actors: [
+		{sel: "p[tabindex='0']", func: handle_keyboard_navigation}
+	]
+};
+
+function handle_keyboard_navigation(e) {
+	const header = e.target;
+	const article = header.closest('li').querySelector('article');
+
+	// Handle the Enter key - open/close the corresponding article
+	if (e.key === "Enter") {
+		toggle_article(article);
+	}
+
+	// Handle the Escape key - close the article if it's open
+	if (e.key === "Escape") {
+		if (article && article.style.display !== 'none') {
+			toggle_article(article);
+		}
+	}
+}
+
+// Function to toggle the visibility of the article
+function toggle_article(article) {
+	if (article) {
+		if (article.style.display === 'none') {
+			article.style.display = 'block'; // Open article
+		} else {
+			article.style.display = 'none'; // Close article
+		}
+	}
+}
+
+// Initialize the setup of keyboard navigation
+function init_keyboard_navigation() {
+	run_with_data(KEYBOARD_NAVIGATION_DATA);
+}
+
+// Initialize the page setup
+function run_with_data(data) {
+	if ("actors" in data) {
+		for (let actor of data.actors) {
+			Array.from(document.querySelectorAll(actor.sel)).forEach((el) => { actor.func(el); });
+		}
+	}
+	if ("eventHandlers" in data) {
+		for (let eh of data.eventHandlers) {
+			Array.from(document.querySelectorAll(eh.sel)).forEach((el) => {
+				el.addEventListener("click", eh.func); });
+		}
+	}
+}
+
+window.addEventListener("load", (e) => {
+	run_with_data(INIT_DATA);
+	init_keyboard_navigation();
+});
 
 window.addEventListener("load", (e) => { run_with_data(INIT_DATA); });
